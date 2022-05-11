@@ -15,6 +15,7 @@ const createItem = async (inventoryItem) => {
 
 const itemExist = async (inventoryId) => {
   const item = await InventoryItem.findById(inventoryId);
+
   if (!item) {
     return false;
   } else {

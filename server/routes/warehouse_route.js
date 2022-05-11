@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
-const connection = require("../config/database");
 const Warehouse = require("../models/Warehouse");
 const InventoryItem = require("../models/InventoryItem");
 const WarehouseService = require("../services/warehouse_service");

@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
-const connection = require("../config/database");
 const InventoryItem = require("../models/InventoryItem");
 const InventoryService = require("../services/inventory_service");
 
@@ -9,6 +8,20 @@ router.get("/", async (req, res) => {
   try {
     const inventoryList = await InventoryService.getItems();
     res.status(200).send(inventoryList);
+  } catch (err) {
+    res.status(400).send(err.message);
+  }
+});
+
+//Get an inventory item from its id
+router.get("/:id", async (req, res) => {
+  try {
+    const item = await InventoryService.itemExist(req.params.id);
+    if (!item) {
+      res.status(404).send("The item with the given id could not be found");
+    } else {
+      res.status(200).send(item);
+    }
   } catch (err) {
     res.status(400).send(err.message);
   }
