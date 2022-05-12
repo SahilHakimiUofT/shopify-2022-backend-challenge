@@ -12,7 +12,7 @@ This is my technical challenge submission for Shopify's 2022 backend engineering
 To run the app:
 
 - Clone the repository https://github.com/SahilHakimiUofT/shopify-2022-backend-challenge.git
-- Get Mongo running locally, if you don't already have that setup
+- Get Mongo running locally, if you don't already have that setup https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/
 - Connect to MongoDB Compass with the URI, mongodb://localhost:27017, you can also connect with MongoDB Shell if you prefer
   ![Image](readme_images/mongo_connection.PNG)
 - Change directory to server and install all the dependencies with `npm install`
