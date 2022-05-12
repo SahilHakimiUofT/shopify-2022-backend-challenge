@@ -55,9 +55,6 @@ const updateItem = async (inventoryId, inventoryItem) => {
     if (inventoryItem.item_sku) {
       item.item_sku = inventoryItem.item_sku;
     }
-    if (inventoryItem.assigned_warehouses) {
-      item.assigned_warehouses = inventoryItem.assigned_warehouses;
-    }
     if (inventoryItem.item_price) {
       item.item_price = inventoryItem.item_price;
     }
