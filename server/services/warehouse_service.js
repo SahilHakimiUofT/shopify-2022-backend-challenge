@@ -42,13 +42,12 @@ const addWarehouseInventory = async (warehouseId, inventoryId, quantity) => {
     };
   }
 
-  InventoryService.quantityCheck(item.item_quantity_unassigned, quantity);
-
   let inventoryRecordIndex = warehouse.inventory.findIndex(
     (inventory) => inventory.item == inventoryId
   );
 
   if (inventoryRecordIndex == -1) {
+    InventoryService.quantityCheck(item.item_quantity_unassigned, quantity);
     warehouse.inventory.push({
       item: inventoryId,
       quantity: quantity,
@@ -56,10 +55,19 @@ const addWarehouseInventory = async (warehouseId, inventoryId, quantity) => {
     await warehouse.save();
     await InventoryService.addWarehouse(item, warehouseId, quantity);
   } else {
+    let quantityDif =
+      warehouse.inventory[inventoryRecordIndex].quantity - quantity;
+    if (quantityDif < 0) {
+      InventoryService.quantityCheck(
+        item.item_quantity_unassigned,
+        -1 * quantityDif
+      );
+    }
     warehouse.inventory[inventoryRecordIndex] = {
       item: inventoryId,
       quantity: quantity,
     };
+
     await warehouse.save();
     await InventoryService.updateWarehouse(item, warehouseId, quantity);
     return;
