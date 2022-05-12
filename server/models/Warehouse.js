@@ -6,7 +6,7 @@ const AssignedItemSchema = new mongoose.Schema({
 });
 
 const WarehouseSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  warehouse_name: { type: String, required: true },
   inventory: [{ type: AssignedItemSchema }],
   address: { type: String, required: true },
   city: { type: String, required: true },

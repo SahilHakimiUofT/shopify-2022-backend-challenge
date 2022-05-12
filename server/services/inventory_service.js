@@ -6,10 +6,11 @@ const getItems = async () => {
 };
 
 const createItem = async (inventoryItem) => {
-  const item = InventoryItem.create({
+  const item = await InventoryItem.create({
     ...inventoryItem,
     item_quantity_unassigned: inventoryItem.item_total_quantity,
   });
+
   return item;
 };
 
@@ -56,6 +57,9 @@ const updateItem = async (inventoryId, inventoryItem) => {
     }
     if (inventoryItem.assigned_warehouses) {
       item.assigned_warehouses = inventoryItem.assigned_warehouses;
+    }
+    if (inventoryItem.item_price) {
+      item.item_price = inventoryItem.item_price;
     }
     await item.save();
     return item;

@@ -30,7 +30,7 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const item = await InventoryService.createItem(req.body);
-    res.status(201).send(item.id);
+    res.status(201).send(item);
   } catch (err) {
     res.status(400).send(err.message);
   }

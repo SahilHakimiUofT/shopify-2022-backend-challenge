@@ -20,9 +20,13 @@ const warehouseExist = async (warehouseId) => {
   }
 };
 
-const warehouseInventoryExist = async (warehouse, inventoryId) => {};
-
 const addWarehouseInventory = async (warehouseId, inventoryId, quantity) => {
+  if (quantity < 0) {
+    throw {
+      status: 400,
+      message: "Cannot assigned quantity less than 0 to warehouse",
+    };
+  }
   const warehouse = await warehouseExist(warehouseId);
   if (!warehouse) {
     throw {

@@ -1,6 +1,6 @@
 const app = require("./app.js");
 const port = 3000 || process.env.PORT;
-const connection = require("../config/database");
+const connection = require("./config/database");
 // const express = require('express')
 // const mongoose = require('mongoose')
 // const bodyParser = require('body-parser')

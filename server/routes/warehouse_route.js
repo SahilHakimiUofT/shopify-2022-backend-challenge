@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const warehouse = await WarehouseService.createWarehouse(req.body);
-    res.status(201).send(warehouse.id);
+    res.status(201).send(warehouse);
   } catch (err) {
     res.status(400).send(err.message);
   }
