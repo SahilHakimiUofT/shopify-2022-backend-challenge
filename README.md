@@ -58,17 +58,17 @@ inventory: [{item:ObjectId,quantity:Number}] //tracks all items assigned to ware
 
 ### Inventory endpoints
 
-- Users can get all inventory items with `GET /inventory` with nothing in the request body
-- Users can get a specific inventory item with `GET /inventory/:id`, if the id is valid the item will be returned, otherwise an error will be returned
-- Users can create an inventory item with `POST /inventory`, in the JSON request body they need to have item_name, item_total_quantity. The optional fields are item_price and item_sku. If the request is valid the new item will be returned, otherwise errors will be
-- Users can edit a specific inventory item with `PUT /inventory/:id`and in the JSON request body they can have item_name, item_total_quantity (above 0, and if lowering the total quantity item_quantity_unassigned has to be greater than 0), item_price, item_sku, if the id and body is valid, the updated item will be returned, otherwise an error
+- Users can get all inventory items with `GET /inventory` with nothing in the request body, response will be an array of all the inventory item objects
+- Users can get a specific inventory item in the response with `GET /inventory/:id`, if the id is valid the item will be returned, otherwise an error will be returned
+- Users can create an inventory item with `POST /inventory`, in the JSON request body they need to have item_name, item_total_quantity. The optional fields are item_price and item_sku. If the request is valid the new item will be in the response, otherwise errors will be
+- Users can edit a specific inventory item with `PUT /inventory/:id`and in the JSON request body they can have item_name, item_total_quantity (above 0, and if lowering the total quantity item_quantity_unassigned has to be greater than 0), item_price, item_sku, if the id and body is valid, the updated item will be in the response, otherwise an error
 - Users can delete a specific inventory item with `DELETE /inventory/:id` with the id being a valid id for an inventory item in the Mongo Database, if the id is valid the response status will be 200, otherwise an error will be returned
 
 ### Warehouse Endpoints
 
-- User can get a list of all the warehouses with `GET /warehouse` with nothing in the request body
-- User can create a warehouse with `POST /warehouse` and in the JSON request they must have warehouse_name, province,city,country,address, if the request is valid and successful, the warehouse will be returned, otherwise errors will be
-- User can add inventory to a warehouse with `PUT /warehouse/:id` and in the JSON request they must include a valid item_id, and a quantity > 0 (if the item does not have enough unassigned quantity errors will be returned). If the request is valid, status code 200 will be returned, otherwises errors will be returned
+- User can get a list of all the warehouses with `GET /warehouse` with nothing in the request body, an array of all warehouse objects will be in the response
+- User can create a warehouse with `POST /warehouse` and in the JSON request they must have warehouse_name, province,city,country,address, if the request is valid and successful, the new warehouse object will be in the response , otherwise errors will be
+- User can add inventory to a warehouse with `PUT /warehouse/:id` and in the JSON request they must include a valid item_id, and a quantity > 0 (if the item does not have enough unassigned quantity errors will be returned). If the request is valid, the response status code 200 , otherwises errors will be returned
 
 # TESTING
 
