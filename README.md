@@ -15,8 +15,8 @@ To run the app:
 - Get Mongo running locally, if you don't already have that setup https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/
 - Connect to MongoDB Compass with the URI, mongodb://localhost:27017, you can also connect with MongoDB Shell if you prefer
   ![Image](readme_images/mongo_connection.PNG)
-- Change directory to server and install all the dependencies with `npm install`
-- You can start with server now with `npm start`
+- Change directory to `server` and install all the dependencies with `npm install`
+- You can start the server now with `npm start`
 - The app will listen in on port 3000 unless you choose to create a .env file
 - ## Optional Setup
 - Change directory to server and create a file called .env
