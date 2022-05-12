@@ -15,16 +15,26 @@ const testItemData = {
 };
 
 //connect to database before testing and add test item to inventory collection
-beforeAll(async () => {
+beforeAll(() => {
   const url = "mongodb://localhost:27017/InventoryManagementTestDatabase";
-  await mongoose.connect(url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-
-  const testItem = new InventoryItem(testItemData);
-  testItem.item_quantity_unassigned = testItem.item_total_quantity;
-  await testItem.save();
+  mongoose
+    .connect(url, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    .then(async () => {
+      // console.log("MongoDB connected!!");
+      const testItem = new InventoryItem(testItemData);
+      testItem.item_quantity_unassigned = testItem.item_total_quantity;
+      await testItem.save();
+    })
+    .catch((err) => {
+      console.log("Failed to connect to MongoDB", err);
+    });
+  // await mongoose.connect(url, {
+  //   useNewUrlParser: true,
+  //   useUnifiedTopology: true,
+  // });
 });
 
 async function removeAllCollections() {
