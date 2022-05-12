@@ -5,11 +5,14 @@ This is my technical challenge submission for Shopify's 2022 backend engineering
 ## Setting up
 
 - Node.js
+- [MongoDB (Community Edition)](https://www.mongodb.com/docs/manual/administration/install-community/)
 - [MongoDB (Compass for simiplicity)](https://www.mongodb.com/try/download/compass)
+- NOTE:In a production environment I would be using an Atlas cluster
 
 To run the app:
 
 - Clone the repository https://github.com/SahilHakimiUofT/shopify-2022-backend-challenge.git
+- Get Mongo running locally, if you don't already have that setup
 - Connect to MongoDB Compass with the URI, mongodb://localhost:27017, you can also connect with MongoDB Shell if you prefer
   ![Image](readme_images/mongo_connection.PNG)
 - Change directory to server and install all the dependencies with `npm install`
