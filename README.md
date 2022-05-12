@@ -13,11 +13,11 @@ To run the app:
 - Connect to MongoDB Compass with the URI, mongodb://localhost:27017, you can also connect with MongoDB Shell if you prefer
   ![Image](readme_images/mongo_connection.PNG)
 - Change directory to server and install all the dependencies with `npm install`
-- You can start with server now with npm start
+- You can start with server now with `npm start`
 - The app will listen in on port 3000 unless you choose to create a .env file
 - ## Optional Setup
 - Change directory to server and create a file called .env
-- you can fill in the .env like so, with whichever PORT you choose
+- you can fill in the .env like so, with whichever PORT you choose other than 27017 (specified port for mongo)
 
 ```
 PORT=3000
