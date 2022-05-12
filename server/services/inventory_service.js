@@ -37,19 +37,13 @@ const updateItem = async (inventoryId, inventoryItem) => {
     }
     if (inventoryItem.item_total_quantity) {
       //Extra logic needed here because the total quantity and assigned/unassigned quantity are dependant on each other, cannot lower quantity below assigned quantity (total quantity - unassigned quantity)
-      if (
-        inventoryItem.item_total_quantity < item.item_total_quantity &&
-        item_quantity_unassigned == 0
-      ) {
+      if (inventoryItem.item_total_quantity < item.item_total_quantity && item.item_quantity_unassigned == 0) {
         throw {
           status: 400,
-          message:
-            "Need to remove some inventory from warehouses, not enough free quantity to lower to the reuqested amount",
+          message: "Need to remove some inventory from warehouses, not enough free quantity to lower to the reuqested amount",
         };
       }
-      item.item_quantity_unassigned =
-        item.item_quantity_unassigned +
-        (inventoryItem.item_total_quantity - item.item_total_quantity);
+      item.item_quantity_unassigned = item.item_quantity_unassigned + (inventoryItem.item_total_quantity - item.item_total_quantity);
       item.item_total_quantity = inventoryItem.item_total_quantity;
     }
     if (inventoryItem.item_sku) {
@@ -79,8 +73,7 @@ const quantityCheck = (unassignedQuantity, quantityNeeded) => {
   if (quantityNeeded > unassignedQuantity) {
     throw {
       status: 400,
-      message:
-        "Not enough quantity left to assign to warehouse, try again with lower quantity or add more inventory of item ",
+      message: "Not enough quantity left to assign to warehouse, try again with lower quantity or add more inventory of item ",
     };
   }
 };
@@ -96,14 +89,9 @@ const addWarehouse = async (item, warehouseId, quantity) => {
 };
 
 const updateWarehouse = async (item, warehouseId, itemQuantity) => {
-  let warehouseRecordIndex = item.assigned_warehouses.findIndex(
-    (assigendWarehouse) => assigendWarehouse.warehouse == warehouseId
-  );
+  let warehouseRecordIndex = item.assigned_warehouses.findIndex((assigendWarehouse) => assigendWarehouse.warehouse == warehouseId);
 
-  item.item_quantity_unassigned =
-    item.item_quantity_unassigned -
-    (itemQuantity -
-      item.assigned_warehouses[warehouseRecordIndex].quantity_assigned);
+  item.item_quantity_unassigned = item.item_quantity_unassigned - (itemQuantity - item.assigned_warehouses[warehouseRecordIndex].quantity_assigned);
 
   item.assigned_warehouses[warehouseRecordIndex] = {
     warehouse: warehouseId,
