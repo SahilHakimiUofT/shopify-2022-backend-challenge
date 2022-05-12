@@ -7,7 +7,7 @@ This is my technical challenge submission for Shopify's 2022 backend engineering
 - Node.js
 - [MongoDB (Community Edition)](https://www.mongodb.com/docs/manual/administration/install-community/)
 - [MongoDB (Compass for simiplicity)](https://www.mongodb.com/try/download/compass)
-- NOTE:In a production environment I would be using an Atlas cluster
+- NOTE: In a production environment I would be using a MongoDB Atlas cluster but for local development I am using local Mongo databases
 
 To run the app:
 
