@@ -3,7 +3,7 @@ const app = require("../app.js");
 const mongoose = require("mongoose");
 const { create } = require("../models/InventoryItem.js");
 const InventoryItem = require("../models/InventoryItem.js");
-
+require("dotenv").config();
 //This is a random unique id that I will use for my test item
 const testItemId = new mongoose.Types.ObjectId();
 //This is the test item data that I will use for my put and get request tests a
@@ -16,7 +16,9 @@ const testItemData = {
 
 //connect to database before testing and add test item to inventory collection
 beforeAll(() => {
-  const url = "mongodb://localhost:27017/InventoryManagementTestDatabase";
+  const url =
+    process.env.MONGODB_TEST_URI ||
+    "mongodb://localhost:27017/InventoryManagementTestDatabase";
   mongoose
     .connect(url, {
       useNewUrlParser: true,

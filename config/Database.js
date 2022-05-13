@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
-const conn = "mongodb://localhost:27017/InventoryManagement";
+const conn =
+  process.env.MONGODB_URI || "mongodb://localhost:27017/InventoryManagement";
 
 const connection = mongoose.connect(
   conn,

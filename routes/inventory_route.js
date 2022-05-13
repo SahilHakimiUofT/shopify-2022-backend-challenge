@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
-const InventoryItem = require("../models/InventoryItem");
-const InventoryService = require("../services/inventory_service");
+const InventoryItem = require("../models/InventoryItem.js");
+const InventoryService = require("../services/inventory_service.js");
 
 //Get the list of all the inventory items and return in response
 router.get("/", async (req, res) => {

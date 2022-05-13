@@ -1,6 +1,7 @@
 const request = require("supertest");
 const app = require("../app.js");
 const mongoose = require("mongoose");
+require("dotenv").config();
 const { create } = require("../models/InventoryItem.js");
 const InventoryItem = require("../models/InventoryItem.js");
 const Warehouse = require("../models/Warehouse.js");
@@ -26,7 +27,9 @@ const warehouseData = {
 };
 //connect to database before testing and add test item to inventory collection
 beforeAll(() => {
-  const url = "mongodb://localhost:27017/InventoryManagementTestDatabase";
+  const url =
+    process.env.MONGODB_TEST_URI ||
+    "mongodb://localhost:27017/InventoryManagementTestDatabase";
   mongoose
     .connect(url, {
       useNewUrlParser: true,
