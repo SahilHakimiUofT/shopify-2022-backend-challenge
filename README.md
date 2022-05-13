@@ -2,12 +2,11 @@
 
 This is my technical challenge submission for Shopify's 2022 backend engineering position
 
-## Setting up
+## Local Setup
 
 - Node.js
-- [MongoDB (Community Edition)](https://www.mongodb.com/docs/manual/administration/install-community/)
+- [MongoDB (Community Edition)] (https://www.mongodb.com/docs/manual/administration/install-community/)
 - [MongoDB (Compass for simiplicity)](https://www.mongodb.com/try/download/compass)
-- NOTE: In a production environment I would be using a MongoDB Atlas cluster but for local development I am using local Mongo databases
 
 To run the app:
 
@@ -15,16 +14,25 @@ To run the app:
 - Get Mongo running locally, if you don't already have that setup https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/
 - Connect to MongoDB Compass with the URI, mongodb://localhost:27017, you can also connect with MongoDB Shell if you prefer
   ![Image](readme_images/mongo_connection.PNG)
-- Change directory to `server` and install all the dependencies with `npm install`
+- Install all the dependencies with `npm install`
 - You can start the server now with `npm start`
 - The app will listen in on port 3000 unless you choose to create a .env file
 - ## Optional Setup
-- Change directory to server and create a file called .env
+- Create a file called .env in the root directory
 - you can fill in the .env like so, with whichever PORT you choose other than 27017 (specified port for mongo)
 
 ```
 PORT=3000
+MONGODB_URI=(Atlas Connection String or Local Connection String)
+MONGODB_TEST_URI=(Atlas Connection String or Local Connection String, Make sure to use a different database name than the first URI)
 ```
+
+## Replit Deployment
+
+On my Replit App all you have to do is press run to get the app running and then
+the app will be hosted on the url in this box (https://shopify-2022-backend-challenge.sahilhakimi.repl.co), so use that URL for postman requests rather than localhost:3000
+
+![Image](readme_images/replit_app.PNG)
 
 ## Functionality and Chosen additional feature
 
@@ -73,11 +81,12 @@ inventory: [{item:ObjectId,quantity:Number}] //tracks all items assigned to ware
 - User can create a warehouse with `POST /warehouse` and in the JSON request they must have warehouse_name, province,city,country,address, if the request is valid and successful, the new warehouse object will be in the response , otherwise errors will be
 - User can add inventory to a warehouse with `PUT /warehouse/:id` and in the JSON request they must include a valid item_id, and a quantity > 0 (if the item does not have enough unassigned quantity errors will be returned). If the request is valid, the response status code 200 , otherwises errors will be returned
 
-Here is an example of a successful API request with the server running on port 3000
-![Image](readme_images/example_api_request.PNG)
+Here is an example of a successful API request with the Replit app running
+![Image](readme_images/replit_api_request.PNG)
+
 # TESTING
 
-To run test scripts that I've created with jest and supertest, just changed directory into server and run`npx jest`, make sure that the mongodb compass connection is still on for this, the tests populate a test database but they will clear the data on completion
+To run test scripts that I've created with jest and supertest, just run `npx jest` in the shell (make sure you do this before clicking run in Replit), make sure that the mongodb compass connection is still on for this (for local development / deployment), the tests populate a test database but they will clear the data on completion
 
 # Considerations for the Future
 
