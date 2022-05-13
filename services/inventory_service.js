@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-const InventoryItem = require("../models/InventoryItem");
+const InventoryItem = require("../models/InventoryItem.js");
+const Warehouse = require("../models/Warehouse.js");
 
 const getItems = async () => {
   return InventoryItem.find();
@@ -73,6 +74,33 @@ const deleteItem = async (inventoryId) => {
       message: "The item with the given id could not be found for deletion",
     };
   } else {
+    const warehouses = item.assigned_warehouses.map(
+      (warehouseRecord) => warehouseRecord.warehouse
+    );
+
+    if (warehouses.length != 0) {
+      console.log("All assigned warehouses are " + warehouses);
+      const itemId = item._id;
+      warehouses.forEach(async (warehouseId) => {
+        // console.log("indivdual warehouse is " + warehouse);
+        // console.log("inventory of this warehouse is " + warehouse.inventory);
+        // console.log("the id of this item is " + itemId);
+        // const itemId = item._id;
+        // warehouse.inventory = warehouse.inventory.filter((inventory) => {
+        //   // console.log("checker " + inventory.item);
+        //   !inventory.item.equals(itemId);
+        // });
+        try {
+          await Warehouse.findOneAndUpdate(
+            { _id: warehouseId },
+            { $pull: { inventory: { item: itemId } } },
+            { safe: true, multi: false }
+          );
+        } catch (err) {
+          throw err;
+        }
+      });
+    }
     return item;
   }
 };

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-const Warehouse = require("../models/Warehouse");
-const InventoryItem = require("../models/InventoryItem");
-const InventoryService = require("./inventory_service");
+const Warehouse = require("../models/Warehouse.js");
+const InventoryItem = require("../models/InventoryItem.js");
+const InventoryService = require("./inventory_service.js");
 const getWarehouses = async () => {
   return Warehouse.find();
 };
@@ -34,7 +34,9 @@ const addWarehouseInventory = async (warehouseId, inventoryId, quantity) => {
       message: "The warehouse with the given id could not be found",
     };
   }
+
   const item = await InventoryService.itemExist(inventoryId);
+
   if (!item) {
     throw {
       status: 404,
@@ -73,4 +75,9 @@ const addWarehouseInventory = async (warehouseId, inventoryId, quantity) => {
     return;
   }
 };
-module.exports = { getWarehouses, createWarehouse, addWarehouseInventory };
+
+module.exports = {
+  getWarehouses,
+  createWarehouse,
+  addWarehouseInventory,
+};
