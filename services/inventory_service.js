@@ -82,14 +82,6 @@ const deleteItem = async (inventoryId) => {
       console.log("All assigned warehouses are " + warehouses);
       const itemId = item._id;
       warehouses.forEach(async (warehouseId) => {
-        // console.log("indivdual warehouse is " + warehouse);
-        // console.log("inventory of this warehouse is " + warehouse.inventory);
-        // console.log("the id of this item is " + itemId);
-        // const itemId = item._id;
-        // warehouse.inventory = warehouse.inventory.filter((inventory) => {
-        //   // console.log("checker " + inventory.item);
-        //   !inventory.item.equals(itemId);
-        // });
         try {
           await Warehouse.findOneAndUpdate(
             { _id: warehouseId },
