@@ -79,7 +79,6 @@ const deleteItem = async (inventoryId) => {
     );
 
     if (warehouses.length != 0) {
-      console.log("All assigned warehouses are " + warehouses);
       const itemId = item._id;
       warehouses.forEach(async (warehouseId) => {
         try {
