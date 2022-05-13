@@ -79,14 +79,14 @@ inventory: [{item:ObjectId,quantity:Number}] //tracks all items assigned to ware
 
 - User can get a list of all the warehouses with `GET /warehouse` with nothing in the request body, an array of all warehouse objects will be in the response
 - User can create a warehouse with `POST /warehouse` and in the JSON request they must have warehouse_name, province,city,country,address, if the request is valid and successful, the new warehouse object will be in the response , otherwise errors will be
-- User can add inventory to a warehouse with `PUT /warehouse/:id` and in the JSON request they must include a valid item_id, and a quantity > 0 (if the item does not have enough unassigned quantity errors will be returned). If the request is valid, the response status code 200 , otherwises errors will be returned
+- User can add inventory to a warehouse with `PUT /warehouse/:id` and in the JSON request they must include a valid item_id, and a quantity that is > 0 (if the item does not have enough unassigned quantity errors will be returned). If the request is valid, the response status code 200 , otherwises errors will be returned
 
 Here is an example of a successful API request with the Replit app running
 ![Image](readme_images/replit_api_request.PNG)
 
 # TESTING
 
-To run test scripts that I've created with jest and supertest, just run `npx jest` in the shell (make sure you do this before clicking run in Replit), make sure that the mongodb compass connection is still on for this (for local development / deployment), the tests populate a test database but they will clear the data on completion
+To run test scripts that I've created with jest and supertest, just run `npx jest` in the shell, make sure that the mongodb compass connection is still on for this (for local development / deployment), the tests populate a test database but they will clear the data on completion
 
 # Considerations for the Future
 
@@ -94,7 +94,7 @@ Allowing multiple inventory items to be added to a warehouse at once
 Giving inventory items a status (i.e: at warehouse, en route)
 Allowing inventory to be sent from 1 warehouse to another
 
-# Aknowledgements
+# Acknowledgements
 
 - [Youtube Jest tutorial by : Sam Meech-Ward](https://www.youtube.com/watch?v=FKnzS_icp20)
 - [Jest documentation](https://jestjs.io/docs/)
