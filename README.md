@@ -15,8 +15,8 @@ To run the app:
 - Get Mongo running locally, if you don't already have that setup https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/
 - Connect to MongoDB Compass with the URI, mongodb://localhost:27017, you can also connect with MongoDB Shell if you prefer
   ![Image](readme_images/mongo_connection.PNG)
-- Change directory to server and install all the dependencies with `npm install`
-- You can start with server now with `npm start`
+- Change directory to `server` and install all the dependencies with `npm install`
+- You can start the server now with `npm start`
 - The app will listen in on port 3000 unless you choose to create a .env file
 - ## Optional Setup
 - Change directory to server and create a file called .env
@@ -73,6 +73,8 @@ inventory: [{item:ObjectId,quantity:Number}] //tracks all items assigned to ware
 - User can create a warehouse with `POST /warehouse` and in the JSON request they must have warehouse_name, province,city,country,address, if the request is valid and successful, the new warehouse object will be in the response , otherwise errors will be
 - User can add inventory to a warehouse with `PUT /warehouse/:id` and in the JSON request they must include a valid item_id, and a quantity > 0 (if the item does not have enough unassigned quantity errors will be returned). If the request is valid, the response status code 200 , otherwises errors will be returned
 
+Here is an example of a successful API request with the server running on port 3000
+![Image](readme_images/example_api_request.PNG)
 # TESTING
 
 To run test scripts that I've created with jest and supertest, just changed directory into server and run`npx jest`, make sure that the mongodb compass connection is still on for this, the tests populate a test database but they will clear the data on completion
